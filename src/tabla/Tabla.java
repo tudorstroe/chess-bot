@@ -128,6 +128,12 @@ public class Tabla {
         move.getPiece().setMoved(true);
         tabla[x][y].setPiece(move.getPiece());
         tabla[x][y].getPiece().setPatratel(tabla[x][y]);
+	if (currentPlayer == PlayerColor.WHITE){
+            currentPlayer = PlayerColor.BLACK;
+	}
+	else {
+            currentPlayer = PlayerColor.WHITE;
+	}
     }
 
     public void update(String move) {
