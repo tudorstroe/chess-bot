@@ -1,5 +1,7 @@
 package tabla;
 
+import tabla.piese.Piece;
+
 public class Move {
     private Piece piece;
     private Patratel dest;

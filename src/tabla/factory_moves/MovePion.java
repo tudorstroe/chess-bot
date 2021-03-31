@@ -1,6 +1,7 @@
 package tabla.factory_moves;
 
 import tabla.*;
+import tabla.piese.Piece;
 
 import java.util.ArrayList;
 

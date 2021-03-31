@@ -1,7 +1,12 @@
 package tabla;
 
 import tabla.factory_moves.MoveFactory;
+import tabla.piese.Piece;
+import tabla.piese.PieceType;
+import tabla.piese.Pion;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class Tabla {
@@ -10,6 +15,8 @@ public class Tabla {
     private PlayerColor currentPlayer = PlayerColor.WHITE;
     private ArrayList<Move> moves;
 
+    private boolean ableToMove;
+
     public Tabla() {
         /*
         Codificare:
@@ -17,6 +24,7 @@ public class Tabla {
         y - coloana, a 2a coordonata
          */
         tabla = new Patratel[8][8];
+        ableToMove = true;
     }
 
     public void generateMoves() {
@@ -78,30 +86,38 @@ public class Tabla {
         this.moves = moves;
     }
 
-    public void print() {
+    public boolean isAbleToMove() {
+        return ableToMove;
+    }
+
+    public void setAbleToMove(boolean ableToMove) {
+        this.ableToMove = ableToMove;
+    }
+
+    public void print(FileWriter fw) throws IOException {
         for (int j = 7; j >= 0; j--) {
             for (int i = 0; i < 8; i++) {
                 if (tabla[i][j].hasPiece()) {
                     if (tabla[i][j].getPiece().getType() == PieceType.PION) {
                         if (tabla[i][j].getPiece().getColor() == PlayerColor.WHITE) {
-                            System.out.print("  PION ");
+                            fw.write("  PION ");
                         } else {
-                            System.out.print("  pion ");
+                            fw.write("  pion ");
                         }
                     } else {
                         if (tabla[i][j].getPiece().getColor() == PlayerColor.WHITE) {
-                            System.out.print(" PIESA ");
+                            fw.write(" PIESA ");
                         } else {
-                            System.out.print(" piesa ");
+                            fw.write(" piesa ");
                         }
                     }
                 } else {
-                    System.out.print("       ");
+                    fw.write("       ");
                 }
             }
-            System.out.println();
+            fw.write("\n");
         }
-        System.out.println();
+        fw.write("\n");
     }
 
     public void executeMove(Move move) {
@@ -109,6 +125,7 @@ public class Tabla {
         int y = move.getDest().getY();
 
         move.getPiece().getPatratel().setPiece(null);
+        move.getPiece().setMoved(true);
         tabla[x][y].setPiece(move.getPiece());
         tabla[x][y].getPiece().setPatratel(tabla[x][y]);
     }
@@ -116,9 +133,9 @@ public class Tabla {
     public void update(String move) {
         char[] movearr = move.toCharArray();
         int oldx = (int) movearr[0] - (int) 'a';
-        int oldy = (int) movearr[1] - (int) '0';
-        int newx = (int) movearr[1] - (int) '0';
-        int newy = (int) movearr[3] - (int) '0';
+        int oldy = (int) movearr[1] - (int) '1';
+        int newx = (int) movearr[2] - (int) 'a';
+        int newy = (int) movearr[3] - (int) '1';
 
         Piece piece = tabla[oldx][oldy].getPiece();
         Move recvMove = new Move(piece, tabla[newx][newy]);
@@ -126,6 +143,9 @@ public class Tabla {
             // promotion
             recvMove.setPromoted(true);
         }
+//        //debug
+//        System.out.println(piece);
+//        System.out.println(oldx + " " + oldy + " " + newx + " " + newy);
         executeMove(recvMove);
     }
 }

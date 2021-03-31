@@ -1,5 +1,7 @@
 package tabla;
 
+import tabla.piese.Piece;
+
 public class Patratel {
     private int x;
     private int y;

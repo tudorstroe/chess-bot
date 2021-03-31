@@ -1,6 +1,6 @@
 package tabla.factory_moves;
 
-import tabla.PieceType;
+import tabla.piese.PieceType;
 
 public class MoveFactory {
     public static MoveStrategy selectStrategy(PieceType pieceType){
