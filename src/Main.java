@@ -41,5 +41,25 @@ public class Main {
 
     private static boolean isMove(String s){
         return s.matches("[a-h][1-8][a-h][1-8]q?");
+  
     }
+  
+  public static void printMove(Move move) {
+        String str = "move ";
+        int x = move.getPiece().getPatratel().getX();
+        int y = move.getPiece().getPatratel().getY();
+
+        int newx = move.getDest().getX();
+        int newy = move.getDest().getY();
+        str = str + (char) ('a' + x);
+        str = str + (char) ('0' + y);
+        str = str + (char) ('a' + newx);
+        str = str + (char) ('0' + newy);
+
+        if (move.isPromoted()){
+            str = str + "q";
+        }
+
+        System.out.println(str);
+  }
 }
