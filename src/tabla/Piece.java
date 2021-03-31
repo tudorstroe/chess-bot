@@ -1,6 +1,9 @@
 package tabla;
 
+
+@SuppressWarnings({"unused", "BooleanMethodIsAlwaysInverted"})
 public class Piece {
+
     protected Patratel patratel;
     protected boolean moved = false;
     protected PieceType type;
@@ -42,4 +45,5 @@ public class Piece {
     public void setColor(PlayerColor color) {
         this.color = color;
     }
+
 }

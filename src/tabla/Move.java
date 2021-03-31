@@ -1,5 +1,7 @@
 package tabla;
 
+
+@SuppressWarnings("unused")
 public class Move {
     private Piece piece;
     private Patratel dest;
@@ -24,4 +26,5 @@ public class Move {
     public void setDest(Patratel dest) {
         this.dest = dest;
     }
+
 }

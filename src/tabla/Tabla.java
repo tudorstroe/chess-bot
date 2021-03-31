@@ -1,9 +1,12 @@
 package tabla;
 
 import tabla.factory_moves.MoveFactory;
+import tabla.factory_moves.MoveStrategy;
 
 import java.util.ArrayList;
 
+
+@SuppressWarnings("unused")
 public class Tabla {
     private Patratel[][] tabla;
     private PlayerColor machine = PlayerColor.BLACK;
@@ -19,31 +22,78 @@ public class Tabla {
         tabla =  new Patratel[8][8];
     }
 
-    public void generateMoves(){
+    public void generateMoves() {
+
         moves = new ArrayList<>();
-        for (int i=0; i<8; i++){
-            for (int j=0;j<8;j++){
-                if (tabla[i][j].hasPiece() && tabla[i][j].getPiece().getType() != null && tabla[i][j].getPiece().getColor() == machine){
-                    moves.addAll(MoveFactory.selectStrategy(tabla[i][j].getPiece().getType()).getMoves(tabla[i][j], this));
+
+        for (int i=0; i<8; i++) {
+
+            for (int j=0;j<8;j++) {
+
+                if (tabla[i][j].hasPiece()
+                        && tabla[i][j].getPiece().getType() != null
+                        && tabla[i][j].getPiece().getColor() == machine) {
+
+                    MoveStrategy strategy = MoveFactory.selectStrategy(tabla[i][j].getPiece().getType());
+
+                    if (strategy != null) {
+                        moves.addAll(strategy.getMoves(tabla[i][j], this));
+                    }
+
                 }
+
             }
+
         }
+
     }
 
     public void init(){
-        for (int i=0; i<8; i++){
-            for (int j=0;j<8;j++){
-                tabla[i][j] = new Patratel(i,j, null);
+
+        for (int i=0; i<8; i++) {
+
+            for (int j=0;j<8;j++) {
+
+                tabla[i][j] = new Patratel(
+                        i,j,
+                        null
+                );
             }
+
         }
 
         for (int i=0; i<8; i++) {
-            tabla[i][0].setPiece(new Piece(tabla[i][0], PlayerColor.WHITE));
-            tabla[i][1].setPiece(new Pion(tabla[i][1], PlayerColor.WHITE));
 
-            tabla[i][6].setPiece(new Pion(tabla[i][6], PlayerColor.BLACK));
-            tabla[i][7].setPiece(new Piece(tabla[i][7], PlayerColor.BLACK));
+            tabla[i][0].setPiece(
+                    new Piece(
+                            tabla[i][0],
+                            PlayerColor.WHITE
+                    )
+            );
+
+            tabla[i][1].setPiece(
+                    new Pion(
+                            tabla[i][1],
+                            PlayerColor.WHITE
+                    )
+            );
+
+            tabla[i][6].setPiece(
+                    new Pion(
+                            tabla[i][6],
+                            PlayerColor.BLACK
+                    )
+            );
+
+            tabla[i][7].setPiece(
+                    new Piece(
+                            tabla[i][7],
+                            PlayerColor.BLACK
+                    )
+            );
+
         }
+
     }
 
     public Patratel[][] getTabla() {
@@ -77,4 +127,5 @@ public class Tabla {
     public void setMoves(ArrayList<Move> moves) {
         this.moves = moves;
     }
+
 }
