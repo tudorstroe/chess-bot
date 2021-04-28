@@ -1,14 +1,21 @@
 package tabla;
 
+import tabla.piese.Piece;
 
-@SuppressWarnings("unused")
 public class Move {
     private Piece piece;
     private Patratel dest;
+    private boolean promoted = false;
 
     public Move(Piece piece, Patratel dest) {
         this.piece = piece;
         this.dest = dest;
+    }
+
+    public Move(Piece piece, Patratel dest, boolean promoted) {
+        this.piece = piece;
+        this.dest = dest;
+        this.promoted = promoted;
     }
 
     public Piece getPiece() {
@@ -27,4 +34,11 @@ public class Move {
         this.dest = dest;
     }
 
+    public boolean isPromoted() {
+        return promoted;
+    }
+
+    public void setPromoted(boolean promoted) {
+        this.promoted = promoted;
+    }
 }

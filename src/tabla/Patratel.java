@@ -1,7 +1,7 @@
 package tabla;
 
+import tabla.piese.Piece;
 
-@SuppressWarnings("unused")
 public class Patratel {
     private int x;
     private int y;
@@ -40,5 +40,4 @@ public class Patratel {
     public boolean hasPiece(){
         return piece != null;
     }
-
 }
