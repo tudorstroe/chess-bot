@@ -1,4 +1,4 @@
-package tabla;
+package tabla.piese;
 
 public enum PieceType {
     PION,
@@ -6,6 +6,6 @@ public enum PieceType {
     NEBUN,
     TURA,
     REGE,
-    REGINA
+    REGINA;
 
 }
