@@ -1,29 +1,30 @@
-ChessBot
-ChessBot is a Java-based application that plays chess, supporting the full range of chess moves and mechanics. It can serve as a practice opponent for chess enthusiasts or as a foundation for more advanced chess AI development.
+# **ChessBot** ♟️🤖  
+A Java-based chess bot that supports full chess mechanics and moves. ChessBot can serve as a practice opponent, a foundation for chess AI development, or even play against itself for study purposes.
 
-Features
-Core Functionality
-Legal Move Validation
+---
 
-Validates all moves based on chess rules, including castling, en passant, and pawn promotion.
-Full Game Mechanics
+## **Features**  
 
-Implements all standard chess rules, including:
-Check and checkmate detection.
-Stalemate and draw conditions (e.g., threefold repetition, insufficient material).
+### 🏰 **Core Functionality**  
+- **Legal Move Validation**:  
+  - Enforces all chess rules, including:  
+    - Castling (both kingside and queenside).  
+    - En passant captures.  
+    - Pawn promotion.  
 
-Configurable difficulty levels, from random moves to strategic gameplay.
-Interactive Gameplay
+- **Complete Chess Mechanics**:  
+  - Detects check, checkmate, and stalemate conditions.  
+  - Handles draw scenarios, such as:  
+    - Threefold repetition.  
+    - Fifty-move rule.  
+    - Insufficient material.  
 
-Play against the bot or watch it play against itself.
-Additional Features
-Move History
-Tracks all moves in algebraic notation for review or analysis.
-Undo Functionality
-Revert to previous states of the game.
-Custom Board Setup
-Start the game from any valid position.
-Getting Started
-Prerequisites
-Java Development Kit (JDK) 8 or higher.
-A code editor or IDE (e.g., IntelliJ IDEA, Eclipse).
+  - Simulates bot-vs-bot games for analysis.  
+
+- **Move History**:  
+  - Tracks moves in algebraic notation for easy review.  
+
+- **Undo Functionality**:  
+  - Revert moves and restore the previous game state.  
+
+
